@@ -1,4 +1,4 @@
-import denver
+import denverapi
 import shutil
 import pickle
 
@@ -8,7 +8,7 @@ def install_app(root: str, assets_root: str):
         requirements = pickle.load(file)
     print(f"Installing Requirements: {requirements}")
     for x in requirements:
-        if denver.install_pip_package(requirements) != 0:
+        if denverapi.install_pip_package(requirements) != 0:
             print(f"Error: Unable to install: {x}")
             return False
 

@@ -29,7 +29,9 @@ def make_empty_app(**configuration):
     shutil.copyfile(f"{__file__}/../resources/icon.cpg", "icon.cpg")
 
 
-def main(arguments):
+def main(arguments=None):
+    if arguments is None:
+        arguments = sys.argv[1:]
     parser = argparse.ArgumentParser(description="Generate PiOS Project", fromfile_prefix_chars="@")
     parser.add_argument("-n", "--new", help="Generate empty project", action="store_true")
     parser.add_argument("-c", "--configure", help="Configure a project with key value pair", action="append",

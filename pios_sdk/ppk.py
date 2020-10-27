@@ -111,7 +111,9 @@ class PPK:
             self.add_sdk_package(x)
 
 
-def main(arguments):
+def main(arguments=None):
+    if arguments is None:
+        arguments = sys.argv[1:]
     parser = argparse.ArgumentParser(description="PPK Package Tool", fromfile_prefix_chars="@")
     options = parser.add_mutually_exclusive_group()
     setup_modifier = options.add_argument_group()

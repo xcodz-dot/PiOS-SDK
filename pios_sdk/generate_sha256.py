@@ -4,7 +4,9 @@ import sys
 import os
 
 
-def main(arguments):
+def main(arguments=None):
+    if arguments is None:
+        arguments = sys.argv[1:]
     parser = argparse.ArgumentParser(description="A tool to generate sha256 checksums for ppa, py, text, etc files")
 
     options = parser.add_mutually_exclusive_group()
