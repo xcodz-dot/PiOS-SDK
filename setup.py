@@ -9,7 +9,7 @@ requirements = ["denver-api",
 
 setuptools.setup(
     name='PiOS-SDK',
-    version='0.1',
+    version='0.2',
     packages=setuptools.find_packages() + setuptools.find_namespace_packages(include=["pios_sdk.*", "pios_sdk"]),
     package_data=pysetup.find_package_data("pios_sdk", "pios_sdk"),
     url='https://github.com/xcodz-dot/PiOS-SDK',
@@ -21,7 +21,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     python_requires=">=3.8",
     install_requires=requirements,
-    keywords=["PiOS", "python", "os", "github", "pyos", "operating", "system"],
+    keywords=["PiOS", "python", "os", "github", "pyos", "operating", "system", "PiOS-SDK", "sdk"],
     entry_points={
         "console_scripts": [
             "pios-sdk-ppk = pios_sdk.ppk:main",
