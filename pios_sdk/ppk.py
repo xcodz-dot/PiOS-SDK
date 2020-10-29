@@ -5,11 +5,11 @@ PiOS Package Kit
 The Official Build Tools for PiOS
 """
 
+import argparse
 import json
 import os
-import shutil
-import argparse
 import pickle
+import shutil
 import sys
 
 
@@ -59,7 +59,7 @@ class PPK:
         self.icon = icon
 
     def build(self):
-        if 'pios_build' in os.listdir():
+        if "pios_build" in os.listdir():
             shutil.rmtree("pios_build")
         os.mkdir("pios_build")
         os.mkdir("pios_build/assets")
@@ -78,7 +78,9 @@ class PPK:
         for x in self.packages:
             shutil.copytree(x, f"pios_build/packages/{os.path.basename(x)}")
         for x in self.sdk_packages:
-            shutil.copytree(f"{__file__}/library/{x}", f"pios_build/packages/{os.path.basename(x)}")
+            shutil.copytree(
+                f"{__file__}/library/{x}", f"pios_build/packages/{os.path.basename(x)}"
+            )
         for x in self.py_modules:
             shutil.copyfile(x, f"pios_build/packages/{os.path.basename(x)}")
         shutil.copytree(self.main_package, "pios_build/main")
@@ -114,26 +116,85 @@ class PPK:
 def main(arguments=None):
     if arguments is None:
         arguments = sys.argv[1:]
-    parser = argparse.ArgumentParser(description="PPK Package Tool", fromfile_prefix_chars="@")
+    parser = argparse.ArgumentParser(
+        description="PPK Package Tool", fromfile_prefix_chars="@"
+    )
     options = parser.add_mutually_exclusive_group()
     setup_modifier = options.add_argument_group()
-    setup_modifier.add_argument("-p", "--package", help="add a python package to build list", action="append", 
-                                default=[])
-    setup_modifier.add_argument("-P", "--sdk-package", help="add a local copy of sdk library to packages",
-                                action="append", default=[])
-    setup_modifier.add_argument("-m", "--module", help="add a python module to build list", action="append", default=[])
-    setup_modifier.add_argument("-r", "--pypi-requirement", help="add a python pypi package to build list",
-                                action="append", default=[])
-    setup_modifier.add_argument("-ad", "--add-directory", help="add a directory to build list", action="append",
-                                default=[])
-    setup_modifier.add_argument("-af", "--add-file", help="add a file to to build list", action="append", default=[])
-    setup_modifier.add_argument("-i", "--installer", help="add a custom installer to build list", default=None)
-    setup_modifier.add_argument("-c", "--configure", help="add a app configuration to build list", default="app.json")
-    setup_modifier.add_argument("-mp", "--main-package", help="set a main package", default="main")
-    setup_modifier.add_argument("--icon", help="set a icon for your Application", default="icon.cpg")
-    options.add_argument("-b", "--build", help="Build the ppk using 'build.json' file", action="store_true")
-    options.add_argument("-ppk", "--pios-package-kit", help="Packages the final app into PPK", action="store_true")
-    options.add_argument("--cleanup", help="Cleanup the directory be deleting unnecessary data", action="store_true")
+    setup_modifier.add_argument(
+        "-p",
+        "--package",
+        help="add a python package to build list",
+        action="append",
+        default=[],
+    )
+    setup_modifier.add_argument(
+        "-P",
+        "--sdk-package",
+        help="add a local copy of sdk library to packages",
+        action="append",
+        default=[],
+    )
+    setup_modifier.add_argument(
+        "-m",
+        "--module",
+        help="add a python module to build list",
+        action="append",
+        default=[],
+    )
+    setup_modifier.add_argument(
+        "-r",
+        "--pypi-requirement",
+        help="add a python pypi package to build list",
+        action="append",
+        default=[],
+    )
+    setup_modifier.add_argument(
+        "-ad",
+        "--add-directory",
+        help="add a directory to build list",
+        action="append",
+        default=[],
+    )
+    setup_modifier.add_argument(
+        "-af",
+        "--add-file",
+        help="add a file to to build list",
+        action="append",
+        default=[],
+    )
+    setup_modifier.add_argument(
+        "-i", "--installer", help="add a custom installer to build list", default=None
+    )
+    setup_modifier.add_argument(
+        "-c",
+        "--configure",
+        help="add a app configuration to build list",
+        default="app.json",
+    )
+    setup_modifier.add_argument(
+        "-mp", "--main-package", help="set a main package", default="main"
+    )
+    setup_modifier.add_argument(
+        "--icon", help="set a icon for your Application", default="icon.cpg"
+    )
+    options.add_argument(
+        "-b",
+        "--build",
+        help="Build the ppk using 'build.json' file",
+        action="store_true",
+    )
+    options.add_argument(
+        "-ppk",
+        "--pios-package-kit",
+        help="Packages the final app into PPK",
+        action="store_true",
+    )
+    options.add_argument(
+        "--cleanup",
+        help="Cleanup the directory be deleting unnecessary data",
+        action="store_true",
+    )
 
     args = parser.parse_args(arguments)
 
@@ -151,19 +212,21 @@ def main(arguments=None):
     else:
         if args.installer is None:
             args.installer = os.path.abspath(f"{__file__}/../_installer.py")
-        config = {"icon": args.icon,
-                  "main_package": args.main_package,
-                  "installer": args.installer,
-                  "configuration": args.configure,
-                  "requirements": args.pypi_requirement,
-                  "data_files": args.add_file,
-                  "data_directories": args.add_directory,
-                  "packages": args.package,
-                  "modules": args.module,
-                  "sdk_packages": args.sdk_package}
+        config = {
+            "icon": args.icon,
+            "main_package": args.main_package,
+            "installer": args.installer,
+            "configuration": args.configure,
+            "requirements": args.pypi_requirement,
+            "data_files": args.add_file,
+            "data_directories": args.add_directory,
+            "packages": args.package,
+            "modules": args.module,
+            "sdk_packages": args.sdk_package,
+        }
         with open("build.json", "w") as file:
             json.dump(config, file, sort_keys=True, indent=4)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv[1:])

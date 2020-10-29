@@ -7,9 +7,9 @@ def tool(path):
     return p
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     directory = os.path.dirname(__file__)
     print("Available SDK Tools:")
     for x in os.listdir(directory):
         if not x.startswith("_") and x.endswith(".py"):
-            print("\t"+tool(x))
+            print("\t" + tool(x))
