@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: PiOS-SDK
+Version: 0.3.1
+Summary: PiOS, A full featured python written OS [SDK]
+Home-page: https://github.com/xcodz-dot/PiOS-SDK
+Author: xcodz
+Author-email:
+License: MIT License
+Description: # PiOS-SDK
+
+Keywords: PiOS,python,os,github,pyos,operating,system,PiOS-SDK,sdk
+Platform: UNKNOWN
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown

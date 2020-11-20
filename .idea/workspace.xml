@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d568e237-8a8c-402b-8e18-8dc33fd9163b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PiOS-SDK.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PiOS-SDK.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +20,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d568e237-8a8c-402b-8e18-8dc33fd9163b" name="Default Changelist" comment="" />
@@ -31,5 +32,11 @@
       <updated>1605632064101</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="324" y="70" width="1271" height="912" key="SettingsEditor" timestamp="1605762598819">
+      <screen x="0" y="34" width="1920" height="978" />
+    </state>
+    <state x="324" y="70" width="1271" height="912" key="SettingsEditor/0.34.1920.978@0.34.1920.978" timestamp="1605762598819" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import shutil
 import sys
 from typing import Tuple
@@ -27,8 +28,8 @@ def make_empty_app(**configuration):
             raise ConfigurationError(
                 f"The following configuration value is needed: {x}"
             )
-    shutil.copytree(f"{__file__}/../resources/template_package", "main")
-    shutil.copyfile(f"{__file__}/../resources/icon.cpg", "icon.cpg")
+    shutil.copyfile(os.path.abspath(f"{__file__}/../resources/main.py"), "main.py")
+    shutil.copyfile(os.path.abspath(f"{__file__}/../resources/icon.cpg"), "icon.cpg")
 
 
 def main(arguments=None):

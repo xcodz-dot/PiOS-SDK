@@ -63,7 +63,6 @@ class PPK:
             shutil.rmtree("pios_build")
         os.mkdir("pios_build")
         os.mkdir("pios_build/assets")
-        os.mkdir("pios_build/lib")
         with open("pios_build/setup.py", "w") as file:
             file.write(self.installer)
         with open("pios_build/app.json", "w") as file:
@@ -79,11 +78,12 @@ class PPK:
             shutil.copytree(x, f"pios_build/packages/{os.path.basename(x)}")
         for x in self.sdk_packages:
             shutil.copytree(
-                f"{__file__}/library/{x}", f"pios_build/packages/{os.path.basename(x)}"
+                os.path.abspath(f"{__file__}/../library/{x}"),
+                f"pios_build/packages/{os.path.basename(x)}",
             )
         for x in self.py_modules:
             shutil.copyfile(x, f"pios_build/packages/{os.path.basename(x)}")
-        shutil.copytree(self.main_package, "pios_build/main")
+        shutil.copyfile(self.main_package, "pios_build/main.py")
 
     @staticmethod
     def package():
@@ -96,7 +96,7 @@ class PPK:
         with open(file) as file:
             config = json.load(file)
         self.set_icon(config["icon"])
-        self.set_main_package(config["main_package"])
+        self.set_main_package(config["main_module"])
         self.set_custom_installer(config["installer"])
         self.set_configuration(config["configuration"])
         for x in config["requirements"]:
@@ -173,7 +173,7 @@ def main(arguments=None):
         default="app.json",
     )
     setup_modifier.add_argument(
-        "-mp", "--main-package", help="set a main package", default="main"
+        "-mf", "--main-file", help="set a main file", default="main.py"
     )
     setup_modifier.add_argument(
         "--icon", help="set a icon for your Application", default="icon.cpg"
@@ -214,7 +214,7 @@ def main(arguments=None):
             args.installer = os.path.abspath(f"{__file__}/../_installer.py")
         config = {
             "icon": args.icon,
-            "main_package": args.main_package,
+            "main_module": args.main_file,
             "installer": args.installer,
             "configuration": args.configure,
             "requirements": args.pypi_requirement,
