@@ -18,4 +18,4 @@ pios_sdk/library/pios_sdk_info/__init__.py
 pios_sdk/library/pios_terminal/__init__.py
 pios_sdk/resources/__init__.py
 pios_sdk/resources/icon.cpg
-pios_sdk/resources/template_package/__init__.py
+pios_sdk/resources/main.py
