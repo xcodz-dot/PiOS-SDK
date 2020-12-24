@@ -1,0 +1,16 @@
+[build]
+    [build.files]
+    icon = "icon.cpg"
+    main = "main.py"
+    configuration = "app.json"
+    installer = ".../_installer.py"
+
+    [build.dependencies]
+    pypi = []
+    sdk = []
+    local_packages = []
+    local_modules = []
+
+    [build.data]
+    files = []
+    directories = []

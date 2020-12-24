@@ -1,0 +1,19 @@
+[pios_compatibility]
+help="Makes maintaining program compatibility with different versions of PiOS easier"
+revision=1
+uses=[]
+
+[pios_exit_interface]
+help="Provides interface for program exit which is passed to PiOS for further processing"
+revision=1
+uses=[]
+
+[pios_sdk_info]
+help="Provides SDK Information by which the program is built"
+revision=1
+uses=[]
+
+[pios_terminal]
+help="Provides a standard interface for accessing and using the pios terminal"
+revision=1
+uses=[]

@@ -2,3 +2,4 @@ denver-api
 PiOS
 packaging
 setuptools
+toml

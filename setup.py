@@ -4,7 +4,7 @@ from denverapi import pysetup
 with open("README.md") as file:
     long_description = file.read()
 
-requirements = ["denver-api", "PiOS"]
+requirements = ["denver-api", "PiOS", "packaging", "toml"]
 
 setuptools.setup(
     name="PiOS-SDK",

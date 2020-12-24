@@ -18,3 +18,5 @@ def install_app(root: str, assets_root: str, file_root: str):
     shutil.copyfile(f"{file_root}/app.json", f"{root}/app.json")
     shutil.copyfile(f"{file_root}/icon.cpg", f"{root}/icon.cpg")
     shutil.copytree(f"{file_root}/assets", assets_root)
+
+    return True
