@@ -152,7 +152,9 @@ def main(arguments=None):
     parser = argparse.ArgumentParser(
         description="PPK Package Tool", fromfile_prefix_chars="@"
     )
-    subparser = parser.add_subparsers(title="Commands", dest="command_")
+    subparser = parser.add_subparsers(
+        title="Commands", dest="command_", metavar="command [options ...]"
+    )
     options = parser.add_mutually_exclusive_group()
     options.add_argument(
         "-l",
@@ -275,7 +277,7 @@ def main(arguments=None):
         app = PPK()
         app.load_using_toml()
         app.package()
-    else:
+    elif args.command_ == "config":
         if args.overwrite or (not os.path.isfile("build.toml")):
             if args.installer is None:
                 args.installer = os.path.abspath(
@@ -362,9 +364,16 @@ def main(arguments=None):
                 print(
                     f"Warning: data_directory: '{x}' does not exist but is added to configuration"
                 )
-        for x in config["build"]["dependencies"]:
+        for x in config["build"]["dependencies"]["local_packages"]:
             if not os.path.isdir(x):
-                pass  # TODO start from here
+                print(
+                    f"Warning: local_package: '{x}' does not exist but is added to configuration"
+                )
+        for x in config["build"]["dependencies"]["local_modules"]:
+            if not os.path.isfile(x):
+                print(
+                    f"Warning: local_module: '{x}' does not exist but is added to configuration"
+                )
 
         with open("build.toml", "w") as file:
             toml.dump(config, file)
