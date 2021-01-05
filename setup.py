@@ -37,6 +37,7 @@ setuptools.setup(
             "pios-sdk-ppk = pios_sdk.ppk:main",
             "pios-sdk-app = pios_sdk.app:main",
             "pios-sdk-gensha256 = pios_sdk.generate_sha256:main",
+            "ark = pios_sdk.ark:main",
         ]
     },
 )
