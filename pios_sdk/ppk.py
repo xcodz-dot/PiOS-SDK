@@ -152,9 +152,7 @@ def main(arguments=None):
     parser = argparse.ArgumentParser(
         description="PPK Package Tool", fromfile_prefix_chars="@"
     )
-    subparser = parser.add_subparsers(
-        title="Commands", dest="command_", metavar="command [options ...]"
-    )
+    subparser = parser.add_subparsers(title="Commands", dest="command_", metavar="")
     options = parser.add_mutually_exclusive_group()
     options.add_argument(
         "-l",
@@ -162,7 +160,7 @@ def main(arguments=None):
         help="lists packages that come with sdk",
         action="store_true",
     )
-    setup_modifier = subparser.add_parser("config")
+    setup_modifier = subparser.add_parser("config", help="Configure the project")
     setup_modifier.add_argument(
         "-p",
         "--package",
@@ -233,14 +231,6 @@ def main(arguments=None):
         action="store_true",
     )
     options.add_argument(
-        "-d",
-        "--pre-download",
-        help="Pre Download the pypi requirement, you can use it anytime for updating them again if"
-        " the requirements have changed (speeds up the installation process on user), also this"
-        "downloads only a few requirements",
-        action="store_true",
-    )
-    options.add_argument(
         "-p",
         "--pios-package-kit",
         help="Packages the final app into PPK",
@@ -283,6 +273,8 @@ def main(arguments=None):
                 args.installer = os.path.abspath(
                     f"{__file__}/../_installer.py"
                 ).replace(os.sep, os.altsep)
+            else:
+                args.installer = args.installer.replace(os.sep, os.altsep)
             if args.icon is None:
                 args.icon = "icon.cpg"
             if args.main_file is None:
