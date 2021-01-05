@@ -21,8 +21,18 @@ required_configuration = [
 
 
 def make_empty_app(**configuration):
+    config = {
+        "name": "",
+        "version": "",
+        "description": "",
+        "author": "Unknown",
+        "author_email": "Unknown",
+        "github_name": "",
+        "key_sign": None,
+    }
+    config.update(configuration)
     with open("app.json", "w") as file:
-        json.dump(configuration, file, indent=4, sort_keys=True)
+        json.dump(config, file, indent=4, sort_keys=True)
     for x in required_configuration:
         if x not in configuration.keys():
             raise ConfigurationError(
