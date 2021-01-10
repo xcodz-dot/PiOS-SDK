@@ -1,1 +1,0 @@
-PIOS_EXIT_INTERFACE = {}
