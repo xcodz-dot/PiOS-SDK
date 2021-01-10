@@ -6,6 +6,7 @@ The Official Build Tools for PiOS
 """
 
 import argparse
+import copy
 import json
 import os
 import pickle
@@ -68,6 +69,8 @@ class PPK:
         self.icon = icon
 
     def build(self):
+        with open(os.path.abspath(f"{__file__}/../library.toml")) as file:
+            library_configuration = toml.load(file)
         print(".", flush=True, end="")
         if "pios_build" in os.listdir():
             shutil.rmtree("pios_build")
@@ -78,7 +81,10 @@ class PPK:
         with open("pios_build/app.json", "w") as file:
             json.dump(self.config, file, indent=4, sort_keys=True)
         with open("pios_build/requirements.pickle", "w+b") as file:
-            pickle.dump(self.requirement, file)
+            r = copy.copy(self.requirement)
+            for package in self.sdk_packages:
+                r.extend(library_configuration[package]["requires"])
+            pickle.dump(r, file)
         for x in self.data_directories:
             shutil.copytree(x, f"pios_build/assets/{os.path.basename(x)}")
         for x in self.data_files:
@@ -86,7 +92,11 @@ class PPK:
         shutil.copyfile(self.icon, "pios_build/icon.cpg")
         for x in self.packages:
             shutil.copytree(x, f"pios_build/packages/{os.path.basename(x)}")
+        packages_required = copy.copy(self.sdk_packages)
         for x in self.sdk_packages:
+            packages_required.extend(library_configuration[x]["uses"])
+        packages_required = list(set(packages_required))
+        for x in packages_required:
             shutil.copytree(
                 os.path.abspath(f"{__file__}/../library/{x}"),
                 f"pios_build/packages/{os.path.basename(x)}",
@@ -251,10 +261,13 @@ def main(arguments=None):
         for x in lib_info.keys():
             newline = "\n"
             print(
-                f"""{x}:{lib_info[x]["revision"]}
+                f"""
+{x} :: r{lib_info[x]["revision"]}
     {lib_info[x]["help"]}
 
-    {('uses:'+(newline+' '*8).join(lib_info[x]['uses'])) if lib_info[x]['uses'] != [] else 'uses: None'}"""
+    {(f'uses:{newline+" "*8}'+(newline+' '*8).join(lib_info[x]['uses'])) if lib_info[x]['uses'] != [] else 'uses: None'}
+    {(f'requires:{newline+" "*8}'+(newline+' '*8).join(lib_info[x]['requires'])) if lib_info[x]['requires'] != []
+                else 'requires: None'}"""
             )
     elif args.build:
         app = PPK()
@@ -290,7 +303,6 @@ def main(arguments=None):
                 args.module = []
             if args.package is None:
                 args.package = []
-
             if args.add_file is None:
                 args.add_file = []
             if args.add_directory is None:
