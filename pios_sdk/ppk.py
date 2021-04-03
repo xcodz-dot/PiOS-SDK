@@ -67,7 +67,6 @@ class PPK:
     def build(self):
         with open(os.path.abspath(f"{__file__}/../library.toml")) as file:
             library_configuration = toml.load(file)
-        print(".", flush=True, end="")
         if "pios_build" in os.listdir():
             shutil.rmtree("pios_build")
         os.mkdir("pios_build")

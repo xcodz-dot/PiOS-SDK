@@ -36,6 +36,7 @@ setuptools.setup(
         "console_scripts": [
             "pios-sdk-ppk = pios_sdk.ppk:main",
             "pios-sdk-app = pios_sdk.app:main",
+            "pios-sdk-sha256 = pios_sdk.sha256:main",
             "ark = pios_sdk.ark:main",
         ]
     },

@@ -14,6 +14,7 @@ pios_sdk/app.py
 pios_sdk/ark.py
 pios_sdk/library.toml
 pios_sdk/ppk.py
+pios_sdk/sha256.py
 pios_sdk/library/github_guest/__init__.py
 pios_sdk/library/pios_compatibility/__init__.py
 pios_sdk/library/pios_sdk_info/__init__.py
