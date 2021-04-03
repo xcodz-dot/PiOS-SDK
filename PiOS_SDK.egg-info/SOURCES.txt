@@ -11,11 +11,15 @@ pios_sdk/__init__.py
 pios_sdk/__main__.py
 pios_sdk/_installer.py
 pios_sdk/app.py
-pios_sdk/generate_sha256.py
+pios_sdk/ark.py
+pios_sdk/library.toml
 pios_sdk/ppk.py
+pios_sdk/library/github_guest/__init__.py
 pios_sdk/library/pios_compatibility/__init__.py
 pios_sdk/library/pios_sdk_info/__init__.py
 pios_sdk/library/pios_terminal/__init__.py
 pios_sdk/resources/__init__.py
-pios_sdk/resources/icon.cpg
+pios_sdk/resources/build.toml
 pios_sdk/resources/main.py
+pios_sdk/resources/make.py
+pios_sdk/resources/setup.py

@@ -1,5 +1,5 @@
 [console_scripts]
+ark = pios_sdk.ark:main
 pios-sdk-app = pios_sdk.app:main
-pios-sdk-gensha256 = pios_sdk.generate_sha256:main
 pios-sdk-ppk = pios_sdk.ppk:main
 

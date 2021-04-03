@@ -39,6 +39,7 @@ def make_empty_app(**configuration):
                 f"The following configuration value is needed: {x}"
             )
     shutil.copyfile(os.path.abspath(f"{__file__}/../resources/main.py"), "main.py")
+    shutil.copyfile(os.path.abspath(f"{__file__}/../resources/icon.cpg"), "icon.cpg")
 
 
 def main(arguments=None):
