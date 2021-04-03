@@ -47,12 +47,14 @@ def quickstart(template="new"):
             print("\n\nFrom Source Configurations\n")
             inputs = [
                 input("Main File            (main.py):"),
+                input("Icon File           (icon.cpg):"),
                 input("Installer (pios-sdk-installer):"),
             ]
             main_file = inputs[0] if inputs[0] != "" else "main.py"
+            icon_file = inputs[1] if inputs[1] != "" else "icon.cpg"
             installer = (
-                inputs[1]
-                if inputs[1] != ""
+                inputs[2]
+                if inputs[2] != ""
                 else os.path.abspath(f"{__file__}/../_installer.py")
             )
             print("\nAdd Data Files\n")
@@ -116,6 +118,8 @@ def quickstart(template="new"):
                 "config",
                 "-mf",
                 main_file,
+                "--icon",
+                icon_file,
                 "-i",
                 installer,
                 "-o",

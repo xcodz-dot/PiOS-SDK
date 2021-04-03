@@ -1,5 +1,5 @@
 import setuptools
-from denverapi import setup_utils as pysetup
+from denverapi import pysetup
 
 with open("README.md") as file:
     long_description = file.read()

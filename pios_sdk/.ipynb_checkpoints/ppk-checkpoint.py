@@ -72,7 +72,6 @@ class PPK:
             shutil.rmtree("pios_build")
         os.mkdir("pios_build")
         os.mkdir("pios_build/assets")
-        os.mkdir("pios_build/packages")
         with open("pios_build/setup.py", "w") as file:
             file.write(self.installer)
         with open("pios_build/app.json", "w") as file:
@@ -103,11 +102,12 @@ class PPK:
 
     @staticmethod
     def package():
+        if os.path.isfile("pios_build/ppk.zip"):
+            os.remove("pios_build/ppk.zip")
         if "dist" not in os.listdir():
             os.mkdir("dist")
-        shutil.make_archive("ppk", "zip", "pios_build")
-        shutil.copyfile("ppk.zip", "dist/app-main.ppk")
-        os.remove("ppk.zip")
+        shutil.make_archive("pios_build/ppk", "zip", "pios_build")
+        shutil.copyfile("pios_build/ppk.zip", "dist/app-main.ppk")
 
     def load_using_toml(self, file="build.toml"):
         with open(file) as file:
