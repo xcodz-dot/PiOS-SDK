@@ -1,6 +1,5 @@
 [build]
     [build.files]
-    icon = "icon.cpg"
     main = "main.py"
     configuration = "app.json"
     installer = ".../_installer.py"

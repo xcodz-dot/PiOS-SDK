@@ -297,7 +297,6 @@ def main(arguments=None):
             config = {
                 "build": {
                     "files": {
-                        "icon": args.icon,
                         "main": args.main_file,
                         "configuration": args.configure,
                         "installer": args.installer,

@@ -8,4 +8,5 @@ class Repository:
         self.repository = urljoin("https://github.com/", repository)
 
     def get_file_content(self, filename, branch="master"):
-        r = requests.get(urljoin(self.repository, f"/raw/{branch}/"))
+        r = requests.get(urljoin(self.repository, f"/raw/{branch}/", filename))
+        return r.content
