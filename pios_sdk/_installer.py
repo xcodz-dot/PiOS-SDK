@@ -9,7 +9,7 @@ def install_app(root: str, assets_root: str, file_root: str):
         requirements = pickle.load(file)
     print(f"Installing Requirements: {requirements}")
     for x in requirements:
-        if denverapi.install_pip_package(requirements) != 0:
+        if denverapi.install_pip_package(x) != 0:
             print(f"Error: Unable to install: {x}")
             return False
 
