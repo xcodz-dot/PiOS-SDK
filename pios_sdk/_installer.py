@@ -16,6 +16,6 @@ def install_app(root: str, assets_root: str, file_root: str):
     shutil.copyfile(f"{file_root}/main.py", f"{root}/main.py")
     shutil.copytree(f"{file_root}/packages", f"{root}/packages")
     shutil.copyfile(f"{file_root}/app.json", f"{root}/app.json")
-    shutil.copytree(f"{file_root}/assets", assets_root)
+    shutil.copytree(f"{file_root}/assets", assets_root, dirs_exist_ok=True)
 
     return True
